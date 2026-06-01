@@ -15,7 +15,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-const LOGO_B64="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTEwIj48cmVjdCB3aWR0aD0iMTYwIiBoZWlnaHQ9IjExMCIgZmlsbD0iI2YyYzRjNCIvPjx0ZXh0IHg9IjgwIiB5PSI3NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iNjAiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9IiMxYTFhMmUiPlJUPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSI5MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFhMWEyZSIgbGV0dGVyLXNwYWNpbmc9IjIiPlJFSEFCSUxJVEFDSU9OUyBUT0FSS0RFWlQ8L3RleHQ+PC9zdmc+";
+const LOGO_B64="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj4KICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iI2Y4ZGVkZSIvPgogIDx0ZXh0IHg9IjEwMCIgeT0iMTI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSI5MCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iIzFhMWExYSIgbGV0dGVyLXNwYWNpbmc9Ii00Ij5SVDwvdGV4dD4KICA8dGV4dCB4PSIxMDAiIHk9IjE1MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxYTFhMWEiIGxldHRlci1zcGFjaW5nPSIzIj5SRUhBQklMSVRBQ0lPTlMgVE9BUks8L3RleHQ+Cjwvc3ZnPg==";
 // User can replace logo: set LOGO_OVERRIDE in localStorage
 const LOGO = localStorage.getItem('toark_logo') || LOGO_B64;
 </script>
@@ -26,7 +26,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 input,select,textarea{font-size:16px!important;}
 #login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,var(--c1) 0%,var(--c3) 100%);}
 .login-box{background:#fff;border-radius:20px;padding:44px 40px;width:380px;max-width:94vw;box-shadow:0 24px 80px rgba(0,0,0,.35);}
-.login-logo{width:90px;height:auto;display:block;margin:0 auto 12px;border-radius:8px;}
+.login-logo{width:90px;height:90px;display:block;margin:0 auto 18px;border-radius:50%;object-fit:contain;}
 .login-brand{font-size:22px;font-weight:900;color:var(--c1);text-align:center;margin-bottom:22px;}
 .login-box label{display:block;font-size:10px;font-weight:700;color:var(--g600);margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;}
 .login-box input{width:100%;padding:12px 14px;border:2px solid var(--g200);border-radius:10px;margin-bottom:14px;}
@@ -40,7 +40,7 @@ input,select,textarea{font-size:16px!important;}
 .sidebar{position:fixed;left:0;top:0;width:var(--sidebar);height:100vh;background:var(--c1);display:flex;flex-direction:column;z-index:200;overflow-y:auto;transition:transform .25s;}
 .sb-logo{padding:16px 16px 14px;border-bottom:1px solid rgba(201,168,76,.2);}
 .sb-brand{display:flex;align-items:center;gap:10px;}
-.sb-logo-img{width:40px;height:28px;object-fit:contain;border-radius:4px;flex-shrink:0;}
+.sb-logo-img{width:38px;height:38px;object-fit:contain;border-radius:50%;flex-shrink:0;}
 .sb-title{font-size:13px;font-weight:900;color:#fff;}
 .sb-sub2{font-size:9px;color:rgba(255,255,255,.35);margin-top:1px;}
 .sb-meta{font-size:9px;color:rgba(255,255,255,.2);margin-top:7px;}
@@ -355,19 +355,39 @@ input,select,textarea{font-size:16px!important;}
 
 <!-- MODAL FACTURA -->
 <div class="modal-bg" id="mfact"><div class="modal">
-  <div class="mhdr"><h2>Nueva Factura</h2><button class="mx" onclick="cm('mfact')">×</button></div>
-  <div class="fgrid f3"><div class="fg"><label>Cliente</label><select id="f-cli"></select></div><div class="fg"><label>Presupuesto vinculado</label><select id="f-pre"><option value="">Ninguno</option></select></div><div class="fg"><label>Fecha</label><input id="f-dat" type="date"></div></div>
-  <div class="fgrid f2" style="margin-top:4px"><div class="fg"><label>Concepto</label><input id="f-con"></div><div class="fg"><label>Base imponible (€)</label><input id="f-bas" type="number" step="0.01" oninput="cf()"></div></div>
-  <div class="fgrid f3" style="margin-top:4px"><div class="fg"><label>IVA (%)</label><input id="f-iva" type="number" value="10" oninput="cf()"></div><div class="fg"><label>IVA (€)</label><input id="f-ivaa" readonly style="background:var(--g100)"></div><div class="fg"><label>TOTAL (€)</label><input id="f-tot" readonly style="background:var(--g100);font-weight:700"></div></div>
-  <div class="fgrid f2" style="margin-top:4px"><div class="fg"><label>Estado</label><select id="f-est"><option value="emitida">Emitida</option><option value="pagada">Pagada</option><option value="vencida">Vencida</option></select></div><div class="fg"><label>Fecha vencimiento</label><input id="f-ven" type="date"></div></div>
-  <div class="mfoot"><button class="btn btn-o" onclick="cm('mfact')">Cancelar</button><button class="btn btn-o" onclick="pfact()">Vista previa</button><button class="btn btn-p" onclick="sf()">Guardar</button></div>
+  <div class="mhdr"><h2 id="mftit">Nueva Factura</h2><button class="mx" onclick="cm('mfact')">×</button></div>
+  <div class="fgrid f3"><div class="fg"><label>Cliente</label><select id="f-cli" onchange="fAutoVenc()"></select></div><div class="fg"><label>Presupuesto vinculado</label><select id="f-pre" onchange="fLoadPre()"><option value="">Ninguno</option></select></div><div class="fg"><label>Fecha emisión</label><input id="f-dat" type="date" onchange="fAutoVenc()"></div></div>
+  <div class="fgrid f2" style="margin-top:4px"><div class="fg"><label>Concepto / Descripción</label><input id="f-con" placeholder="Trabajos de rehabilitación fachada..."></div><div class="fg"><label>Base imponible (€)</label><input id="f-bas" type="number" step="0.01" oninput="cf()" placeholder="0.00"></div></div>
+  <div class="fgrid f3" style="margin-top:4px">
+    <div class="fg"><label>IVA (%)</label><input id="f-iva" type="number" value="10" oninput="cf()"></div>
+    <div class="fg"><label>IVA (€) <span style="color:var(--g500);font-weight:400">auto</span></label><input id="f-ivaa" readonly style="background:var(--g100);color:var(--g600)"></div>
+    <div class="fg"><label>TOTAL (€) <span style="color:var(--green);font-weight:700">= resultado</span></label><input id="f-tot" readonly style="background:var(--greenl);font-weight:800;color:var(--green)"></div>
+  </div>
+  <div class="fgrid f3" style="margin-top:4px">
+    <div class="fg"><label>Estado</label><select id="f-est"><option value="emitida">Emitida</option><option value="pagada">Pagada</option><option value="vencida">Vencida</option></select></div>
+    <div class="fg"><label>Vencimiento <span style="color:var(--g500);font-weight:400">auto +30d</span></label><input id="f-ven" type="date"></div>
+    <div class="fg"><label>Forma de pago</label><select id="f-fpago"><option value="transferencia">Transferencia bancaria</option><option value="efectivo">Efectivo</option><option value="cheque">Cheque</option></select></div>
+  </div>
+  <div class="fg" style="margin-top:8px"><label>Observaciones (opcional)</label><textarea id="f-obs" style="min-height:50px" placeholder="Notas internas o para el cliente..."></textarea></div>
+  <div class="mfoot"><button class="btn btn-o" onclick="cm('mfact')">Cancelar</button><button class="btn btn-o" onclick="pfact()">👁 Vista previa</button><button class="btn btn-p" onclick="sf()">Guardar</button></div>
 </div></div>
 
 <!-- MODAL GASTO -->
 <div class="modal-bg" id="mgasto"><div class="modal">
   <div class="mhdr"><h2>Nuevo Gasto</h2><button class="mx" onclick="cm('mgasto')">×</button></div>
-  <div class="fgrid f2"><div class="fg"><label>Fecha</label><input id="g-dat" type="date"></div><div class="fg"><label>Categoría</label><select id="g-cat"><option>Personal</option><option>Materiales</option><option>Maquinaria / Alquiler</option><option>Subcontrataciones</option><option>Vehículos</option><option>Seguros</option><option>Oficina / Administración</option><option>Otros</option></select></div></div>
-  <div class="fgrid f2" style="margin-top:4px"><div class="fg"><label>Concepto</label><input id="g-con"></div><div class="fg"><label>Importe (€)</label><input id="g-imp" type="number" step="0.01"></div></div>
+  <div class="fgrid f3">
+    <div class="fg"><label>Fecha</label><input id="g-dat" type="date"></div>
+    <div class="fg"><label>Categoría</label><select id="g-cat"><option>Personal</option><option>Materiales</option><option>Maquinaria / Alquiler</option><option>Subcontrataciones</option><option>Vehículos</option><option>Seguros</option><option>Oficina / Administración</option><option>Otros</option></select></div>
+    <div class="fg"><label>Importe (€)</label><input id="g-imp" type="number" step="0.01" placeholder="0.00"></div>
+  </div>
+  <div class="fgrid f2" style="margin-top:4px">
+    <div class="fg"><label>Concepto</label><input id="g-con" placeholder="Descripción del gasto..."></div>
+    <div class="fg"><label>Proveedor / Empresa</label><input id="g-prov" placeholder="Nombre proveedor..."></div>
+  </div>
+  <div class="fgrid f2" style="margin-top:4px">
+    <div class="fg"><label>Obra / Referencia (opcional)</label><select id="g-pre"><option value="">Sin vincular</option></select></div>
+    <div class="fg"><label>Justificante</label><select id="g-just"><option value="factura">Factura</option><option value="ticket">Ticket / Recibo</option><option value="nomina">Nómina</option><option value="contrato">Contrato</option><option value="otro">Otro</option></select></div>
+  </div>
   <div class="mfoot"><button class="btn btn-o" onclick="cm('mgasto')">Cancelar</button><button class="btn btn-p" onclick="sgasto()">Guardar</button></div>
 </div></div>
 <script>
@@ -437,38 +457,52 @@ function rDash(){
   const meses=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],hm=new Date().getMonth(),hy=new Date().getFullYear();
   const bars=Array.from({length:6},(_,i)=>{const d=new Date(hy,hm-5+i,1),m=d.getMonth(),y=d.getFullYear(),v=S.fact.filter(f=>{const fd2=new Date(f.dat+'T12:00');return fd2.getMonth()===m&&fd2.getFullYear()===y;}).reduce((s,f)=>s+(+f.tot||0),0);return{lbl:meses[m],v};});
   const maxB=Math.max(...bars.map(b=>b.v),1);
-  h('pc',`<div class="kgrid k4">
-    <div class="kpi"><div class="kpi-l">Facturación total</div><div class="kpi-v" style="color:var(--green)">${fe(ft)}</div><div class="kpi-s">Cobrado: ${fe(fc)}</div></div>
-    <div class="kpi"><div class="kpi-l">EBITDA estimado</div><div class="kpi-v" style="color:${ebitda>=0?'var(--green)':'var(--red)'}">${fe(ebitda)}</div><div class="kpi-s">Margen: ${margen.toFixed(1)}%</div></div>
-    <div class="kpi"><div class="kpi-l">Pendiente de cobro</div><div class="kpi-v" style="color:var(--amber)">${fe(fp)}</div><div class="kpi-s">Gastos: ${fe(gt)}</div></div>
-    <div class="kpi"><div class="kpi-l">Conversión presupuestos</div><div class="kpi-v" style="color:var(--c3)">${conv}%</div><div class="kpi-s">${pac} aceptados · ${fe(vol)}</div></div>
-  </div>
-  <div class="g2">
-    <div class="card"><div class="card-h"><span class="card-t">Facturación — últimos 6 meses</span></div><div class="card-b">
-      <div style="display:flex;align-items:flex-end;gap:6px;height:90px">
-        ${bars.map(b=>{const pct=Math.round(b.v/maxB*100);return`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="font-size:8px;color:var(--g500)">${b.v>0?Math.round(b.v/1000)+'k':''}</div><div style="width:100%;height:${Math.max(pct,3)}px;background:${pct>50?'var(--c3)':'var(--g300)'};border-radius:3px 3px 0 0"></div><div style="font-size:9px;color:var(--g600);font-weight:600">${b.lbl}</div></div>`;}).join('')}
-      </div>
-    </div></div>
-    <div class="card"><div class="card-h"><span class="card-t">EBITDA y márgenes</span></div><div class="card-b">
-      <div class="metric-row"><span class="metric-lbl">Ingresos cobrados (base)</span><span class="metric-val" style="color:var(--green)">${fe(base)}</span></div>
-      <div class="metric-row"><span class="metric-lbl">Gastos registrados</span><span class="metric-val" style="color:var(--red)">− ${fe(gt)}</span></div>
-      <div class="metric-row" style="border-top:2px solid var(--g200);padding-top:12px"><span class="metric-lbl" style="font-weight:800">EBITDA</span><span class="metric-val" style="font-size:18px;color:${ebitda>=0?'var(--green)':'var(--red)'}">${fe(ebitda)}</span></div>
-      <div class="metric-row"><span class="metric-lbl">Margen</span><span class="metric-val">${margen.toFixed(1)}%</span></div>
-    </div></div>
-  </div>
-  <div class="g2">
-    <div class="card"><div class="card-h"><span class="card-t">Estado presupuestos</span><button class="btn btn-o btn-sm" onclick="go('pres')">Ver todos</button></div><div class="card-b">
-      ${['pendiente','aceptado','rechazado'].map(s=>{const c=S.pres.filter(p=>p.est===s),tot=c.reduce((sum,p)=>sum+(+p.tot||0),0),pct=tp?Math.round(c.length/tp*100):0,col={pendiente:'var(--amber)',aceptado:'var(--green)',rechazado:'var(--red)'}[s],lbl={pendiente:'Pendiente',aceptado:'Aceptado',rechazado:'Rechazado'}[s];return`<div class="pbar-wrap"><div class="pbar-lbl"><span style="font-weight:600">${lbl}</span><span style="color:var(--g500)">${c.length} · ${fe(tot)}</span></div><div class="pbar"><div class="pbar-fill" style="width:${pct}%;background:${col}"></div></div></div>`;}).join('')}
-    </div></div>
-    <div class="card"><div class="card-h"><span class="card-t">Próximas visitas</span><button class="btn btn-o btn-sm" onclick="go('cal')">Calendario</button></div><div class="card-b" style="padding:0">
-      <table class="tbl"><thead><tr><th>Fecha</th><th>Hora</th><th>Descripción</th></tr></thead>
-      <tbody>${prx.map(v=>`<tr><td style="font-weight:600;white-space:nowrap">${fd(v.dat)}</td><td>${v.hor||'—'}</td><td style="font-size:11px">${v.des?.slice(0,30)||v.tip||'—'}</td></tr>`).join('')||'<tr><td colspan="3" style="text-align:center;color:var(--g400);padding:18px">Sin visitas próximas</td></tr>'}</tbody>
-      </table>
-    </div></div>
-  </div>`);
+
+  // Alertas de facturas
+  const factsVenc=S.fact.filter(f=>f.est==='vencida');
+  const factsProx=S.fact.filter(f=>{if(f.est!=='emitida'||!f.ven||f.ven<hoy)return false;const d=Math.round((new Date(f.ven+'T12:00')-new Date())/(1000*60*60*24));return d<=7&&d>=0;});
+  let alertDash='';
+  if(factsVenc.length){const tv=factsVenc.reduce((s,f)=>s+(+f.tot||0),0);alertDash+='<div style="background:#FDEDEC;border:1px solid #E74C3C;border-radius:10px;padding:11px 16px;display:flex;align-items:center;gap:10px;margin-bottom:10px;cursor:pointer;" onclick="go('fact')"><span style="font-size:18px">🔴</span><div><div style="font-weight:700;font-size:12px;color:#C0392B;">'+factsVenc.length+' factura'+(factsVenc.length>1?'s':'')+' vencida'+(factsVenc.length>1?'s':'')+'</div><div style="font-size:10.5px;color:#E74C3C;">Pendiente: '+fe(tv)+'</div></div></div>';}
+  if(factsProx.length){const tp2=factsProx.reduce((s,f)=>s+(+f.tot||0),0);alertDash+='<div style="background:#FEF9E7;border:1px solid #F39C12;border-radius:10px;padding:11px 16px;display:flex;align-items:center;gap:10px;margin-bottom:10px;cursor:pointer;" onclick="go('fact')"><span style="font-size:18px">⚠️</span><div><div style="font-weight:700;font-size:12px;color:#9A7D0A;">'+factsProx.length+' factura'+(factsProx.length>1?'s':'')+' próxima'+(factsProx.length>1?'s':'')+' a vencer</div><div style="font-size:10.5px;color:#B7950B;">'+fe(tp2)+'</div></div></div>';}
+
+  let barsHtml='';
+  bars.forEach(b=>{const pct=Math.round(b.v/maxB*100);barsHtml+='<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="font-size:8px;color:var(--g500)">'+(b.v>0?Math.round(b.v/1000)+'k':'')+'</div><div style="width:100%;height:'+Math.max(pct,3)+'px;background:'+(pct>50?'var(--c3)':'var(--g300)')+';border-radius:3px 3px 0 0"></div><div style="font-size:9px;color:var(--g600);font-weight:600">'+b.lbl+'</div></div>';});
+
+  let presHtml='';
+  ['pendiente','aceptado','rechazado'].forEach(s=>{const c=S.pres.filter(p=>p.est===s),tot2=c.reduce((sum,p)=>sum+(+p.tot||0),0),pct=tp?Math.round(c.length/tp*100):0,col={pendiente:'var(--amber)',aceptado:'var(--green)',rechazado:'var(--red)'}[s],lbl={pendiente:'Pendiente',aceptado:'Aceptado',rechazado:'Rechazado'}[s];presHtml+='<div class="pbar-wrap"><div class="pbar-lbl"><span style="font-weight:600">'+lbl+'</span><span style="color:var(--g500)">'+c.length+' · '+fe(tot2)+'</span></div><div class="pbar"><div class="pbar-fill" style="width:'+pct+'%;background:'+col+'"></div></div></div>';});
+
+  let visHtml='';
+  prx.forEach(v=>{visHtml+='<tr><td style="font-weight:600;white-space:nowrap">'+fd(v.dat)+'</td><td>'+(v.hor||'—')+'</td><td style="font-size:11px">'+(v.des?.slice(0,30)||v.tip||'—')+'</td></tr>';});
+  if(!visHtml)visHtml='<tr><td colspan="3" style="text-align:center;color:var(--g400);padding:18px">Sin visitas próximas</td></tr>';
+
+  h('pc',
+    alertDash
+    +'<div class="kgrid k4">'
+    +'<div class="kpi"><div class="kpi-l">Facturación total</div><div class="kpi-v" style="color:var(--green)">'+fe(ft)+'</div><div class="kpi-s">Cobrado: '+fe(fc)+'</div></div>'
+    +'<div class="kpi"><div class="kpi-l">EBITDA estimado</div><div class="kpi-v" style="color:'+(ebitda>=0?'var(--green)':'var(--red)')+'">'+fe(ebitda)+'</div><div class="kpi-s">Margen: '+margen.toFixed(1)+'%</div></div>'
+    +'<div class="kpi"><div class="kpi-l">Pendiente de cobro</div><div class="kpi-v" style="color:var(--amber)">'+fe(fp)+'</div><div class="kpi-s">Gastos: '+fe(gt)+'</div></div>'
+    +'<div class="kpi"><div class="kpi-l">Conversión presupuestos</div><div class="kpi-v" style="color:var(--c3)">'+conv+'%</div><div class="kpi-s">'+pac+' aceptados · '+fe(vol)+'</div></div>'
+    +'</div>'
+    +'<div class="g2">'
+    +'<div class="card"><div class="card-h"><span class="card-t">Facturación — últimos 6 meses</span></div><div class="card-b">'
+    +'<div style="display:flex;align-items:flex-end;gap:6px;height:90px">'+barsHtml+'</div>'
+    +'</div></div>'
+    +'<div class="card"><div class="card-h"><span class="card-t">EBITDA y márgenes</span></div><div class="card-b">'
+    +'<div class="metric-row"><span class="metric-lbl">Ingresos cobrados (base)</span><span class="metric-val" style="color:var(--green)">'+fe(base)+'</span></div>'
+    +'<div class="metric-row"><span class="metric-lbl">Gastos registrados</span><span class="metric-val" style="color:var(--red)">− '+fe(gt)+'</span></div>'
+    +'<div class="metric-row" style="border-top:2px solid var(--g200);padding-top:12px"><span class="metric-lbl" style="font-weight:800">EBITDA</span><span class="metric-val" style="font-size:18px;color:'+(ebitda>=0?'var(--green)':'var(--red)')+'">'+fe(ebitda)+'</span></div>'
+    +'<div class="metric-row"><span class="metric-lbl">Margen</span><span class="metric-val">'+margen.toFixed(1)+'%</span></div>'
+    +'</div></div>'
+    +'</div>'
+    +'<div class="g2">'
+    +'<div class="card"><div class="card-h"><span class="card-t">Estado presupuestos</span><button class="btn btn-o btn-sm" onclick="go('pres')">Ver todos</button></div><div class="card-b">'+presHtml+'</div></div>'
+    +'<div class="card"><div class="card-h"><span class="card-t">Próximas visitas</span><button class="btn btn-o btn-sm" onclick="go('cal')">Calendario</button></div><div class="card-b" style="padding:0">'
+    +'<table class="tbl"><thead><tr><th>Fecha</th><th>Hora</th><th>Descripción</th></tr></thead><tbody>'+visHtml+'</tbody></table>'
+    +'</div></div>'
+    +'</div>'
+  );
 }
 
-// PRESUPUESTOS
 let epid=null,prows=[],presDocsTemp=[];
 function rPres(){
   const flt=e('pflt')?.value||'todos';let lst=[...S.pres].reverse();if(flt!=='todos')lst=lst.filter(p=>p.est===flt);
@@ -590,13 +624,19 @@ function buildPresHtml(p,companyOverride){
   const scCol={pendiente:'#e67e22',aceptado:'#2d9e5f',rechazado:'#c0392b'}[p.est]||'#888';
   const vd=(()=>{if(!p.dat)return'—';const d=new Date(p.dat+'T12:00');d.setDate(d.getDate()+(+p.val||30));return fd(d.toISOString().slice(0,10));})();
   return`<div class="doc-page">
-  <div class="doc-header">
+  <div class="doc-header" style="border-top:4px solid #1a1a2e;padding-top:32px;">
     <div class="doc-logo-block">
-      <img class="doc-logo-img" src="${co.logo}" alt="${co.name}" onerror="this.style.display='none'">
-      <div><div class="doc-company-tag">Rehabilitaciones</div><div class="doc-company-name">${co.name}</div><div class="doc-company-info">${co.adr}<br>${co.nif}${co.email?'<br>'+co.email:''}</div></div>
+      <img src="${co.logo}" alt="${co.name}" style="width:62px;height:62px;border-radius:50%;object-fit:contain;flex-shrink:0;" onerror="this.style.display='none'">
+      <div style="margin-left:4px;"><div class="doc-company-tag">Rehabilitaciones</div><div class="doc-company-name">${co.name}</div><div class="doc-company-info">${co.adr}<br>${co.nif}${co.email?'<br>'+co.email:''}</div></div>
     </div>
-    <div class="doc-ref"><div class="doc-type">Presupuesto</div><div class="doc-num"># ${p.num}</div><div class="doc-meta"><b>Fecha:</b> ${fd(p.dat)}<br><b>Vencimiento:</b> ${vd}<br><b>Validez:</b> ${p.val||30} días</div><div class="doc-status" style="background:${scBg};color:${scCol};border:1px solid ${scCol}">${{pendiente:'Pendiente',aceptado:'Aceptado',rechazado:'Rechazado'}[p.est]||p.est}</div></div>
+    <div class="doc-ref">
+      <div style="font-size:28px;font-weight:900;color:#1a1a2e;letter-spacing:-1px;text-transform:uppercase;line-height:1;">Presupuesto</div>
+      <div style="font-size:15px;font-weight:700;color:#c9a84c;margin-top:5px;letter-spacing:.5px;"># ${p.num}</div>
+      <div class="doc-meta"><b>Fecha:</b> ${fd(p.dat)}<br><b>Vencimiento:</b> ${vd}<br><b>Validez:</b> ${p.val||30} días</div>
+      <div class="doc-status" style="background:${scBg};color:${scCol};border:1px solid ${scCol};margin-top:6px;">${{pendiente:'Pendiente',aceptado:'Aceptado',rechazado:'Rechazado'}[p.est]||p.est}</div>
+    </div>
   </div>
+  <div style="height:1px;background:linear-gradient(to right,#1a1a2e,#c9a84c,transparent);margin-bottom:20px;margin-top:-8px;"></div>
   <div class="doc-parties">
     <div class="doc-party"><div class="doc-party-lbl">Empresa</div><div class="doc-party-name">${co.name}</div><div class="doc-party-info">${co.adr}<br>${co.nif}</div></div>
     <div class="doc-party"><div class="doc-party-lbl">Cliente</div><div class="doc-party-name">${cl?.nom||'—'}</div><div class="doc-party-info">${[cl?.adr,cl?.nif?'NIF: '+cl.nif:'',cl?.tel?'Tel: '+cl.tel:'',cl?.em].filter(Boolean).join('<br>')}</div></div>
@@ -612,30 +652,133 @@ function buildPresHtml(p,companyOverride){
   </div>`;
 }
 
-// Build factura HTML
+// Build factura HTML — diseño premium limpio
 function buildFactHtml(f){
   const cl=S.cli.find(c=>c.id===f.cli);
-  const stBg={emitida:'#e8f0fe',pagada:'#e8f5ee',vencida:'#fde8e6'}[f.est]||'#f5f5f5';
-  const stCol={emitida:'#2980b9',pagada:'#2d9e5f',vencida:'#c0392b'}[f.est]||'#888';
-  return`<div class="doc-page">
-  <div class="doc-header">
-    <div class="doc-logo-block">
-      <img class="doc-logo-img" src="${LOGO}" alt="Toark" onerror="this.style.display='none'">
-      <div><div class="doc-company-tag">Rehabilitaciones</div><div class="doc-company-name">TOARK, S.L.</div><div class="doc-company-info">C/ Tarragona, 22 · Collbato (08293), Barcelona<br>NIF: B56555477 · toark1973@gmail.com<br>Inscrita en el Registro Mercantil de Barcelona</div></div>
+  const est=f.est||'emitida';
+  const stCfg={
+    emitida:{bg:'#EBF4FF',col:'#1D6FA4',lbl:'EMITIDA',bar:'#2980b9'},
+    pagada:{bg:'#EAFAF1',col:'#1E8449',lbl:'PAGADA',bar:'#27ae60'},
+    vencida:{bg:'#FDEDEC',col:'#C0392B',lbl:'VENCIDA',bar:'#e74c3c'}
+  }[est]||{bg:'#f5f5f5',col:'#888',lbl:est.toUpperCase(),bar:'#888'};
+  const diasVenc=f.ven?(Math.round((new Date(f.ven+'T12:00')-new Date())/(1000*60*60*24))):null;
+  const alertaVenc=(est==='emitida'&&diasVenc!==null&&diasVenc<=7&&diasVenc>=0)?
+    `<div style="background:#FEF9E7;border:1px solid #F39C12;border-radius:6px;padding:8px 14px;margin-bottom:18px;font-size:10.5px;color:#9A7D0A;display:flex;align-items:center;gap:8px"><span style="font-size:14px">⚠️</span> Vence en ${diasVenc} día${diasVenc===1?'':'s'} — ${fd(f.ven)}</div>`:'';
+  const vencidaAlerta=(est==='vencida')?
+    `<div style="background:#FDEDEC;border:1px solid #E74C3C;border-radius:6px;padding:8px 14px;margin-bottom:18px;font-size:10.5px;color:#C0392B;display:flex;align-items:center;gap:8px"><span style="font-size:14px">🔴</span> FACTURA VENCIDA — Pendiente de cobro: ${fe(f.tot||0)}</div>`:'';
+
+  return`<div style="font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;max-width:794px;margin:0 auto;background:#fff;color:#1a1a2e;font-size:12px;">
+
+  <!-- CABECERA con línea de acento -->
+  <div style="border-top:4px solid #1a1a2e;padding:32px 44px 24px;display:flex;justify-content:space-between;align-items:flex-start;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <img src="${LOGO}" style="width:64px;height:64px;border-radius:50%;object-fit:contain;flex-shrink:0;" onerror="this.style.display='none'">
+      <div>
+        <div style="font-size:9px;font-weight:800;color:#c9a84c;text-transform:uppercase;letter-spacing:2px;margin-bottom:3px;">Rehabilitaciones</div>
+        <div style="font-size:17px;font-weight:900;color:#1a1a2e;letter-spacing:-.3px;">Rehabilitacions Toark, S.L.</div>
+        <div style="font-size:9.5px;color:#888;margin-top:4px;line-height:1.8;">C/ Tarragona, 22 · Collbato (08293), Barcelona<br>NIF B56555477 · toark1973@gmail.com</div>
+      </div>
     </div>
-    <div class="doc-ref"><div class="doc-type">Factura</div><div class="doc-num"># ${f.num}</div><div class="doc-meta"><b>Fecha emisión:</b> ${fd(f.dat)}<br>${f.ven?`<b>Vencimiento:</b> ${fd(f.ven)}<br>`:''}</div><div class="doc-status" style="background:${stBg};color:${stCol};border:1px solid ${stCol}">${{emitida:'Emitida',pagada:'Pagada',vencida:'Vencida'}[f.est]||f.est}</div></div>
+    <div style="text-align:right;">
+      <div style="font-size:32px;font-weight:900;color:#1a1a2e;letter-spacing:-1.5px;line-height:1;">FACTURA</div>
+      <div style="font-size:15px;font-weight:700;color:#c9a84c;margin-top:5px;letter-spacing:.5px;">${f.num}</div>
+      <div style="margin-top:8px;">
+        <span style="background:${stCfg.bg};color:${stCfg.col};border:1px solid ${stCfg.col};padding:4px 12px;border-radius:99px;font-size:10px;font-weight:800;letter-spacing:.5px;">${stCfg.lbl}</span>
+      </div>
+    </div>
   </div>
-  <div class="doc-parties">
-    <div class="doc-party"><div class="doc-party-lbl">Emisor</div><div class="doc-party-name">Rehabilitacions Toark, S.L.</div><div class="doc-party-info">C/ Tarragona, 22<br>Collbato (08293), Barcelona<br>NIF: B56555477</div></div>
-    <div class="doc-party"><div class="doc-party-lbl">Facturar a</div><div class="doc-party-name">${cl?.nom||'—'}</div><div class="doc-party-info">${[cl?.adr,cl?.nif?'NIF: '+cl.nif:'',cl?.tel?'Tel: '+cl.tel:'',cl?.em].filter(Boolean).join('<br>')}</div></div>
+
+  <!-- LÍNEA DIVISORIA -->
+  <div style="height:1px;background:linear-gradient(to right,#1a1a2e,#c9a84c,transparent);margin:0 44px;"></div>
+
+  <!-- DATOS FACTURA + CLIENTE -->
+  <div style="padding:22px 44px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+    <div style="background:#F8F9FC;border-radius:8px;padding:14px 16px;">
+      <div style="font-size:8px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Datos factura</div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#888;">Fecha emisión</span><span style="font-weight:700;">${fd(f.dat)}</span></div>
+        ${f.ven?`<div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#888;">Vencimiento</span><span style="font-weight:700;color:${est==='vencida'?'#C0392B':'#1a1a2e'};">${fd(f.ven)}</span></div>`:''}
+        ${f.pre&&f.pre!==''?`<div style="display:flex;justify-content:space-between;font-size:10.5px;"><span style="color:#888;">Presupuesto</span><span style="font-weight:600;font-size:10px;">${S.pres.find(p=>p.id===f.pre)?.num||f.pre}</span></div>`:''}
+      </div>
+    </div>
+    <div style="background:#F8F9FC;border-radius:8px;padding:14px 16px;">
+      <div style="font-size:8px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Emisor</div>
+      <div style="font-size:12px;font-weight:800;color:#1a1a2e;">Rehabilitacions Toark, S.L.</div>
+      <div style="font-size:9.5px;color:#777;margin-top:4px;line-height:1.7;">C/ Tarragona, 22<br>Collbato (08293), Barcelona<br>NIF: B56555477</div>
+    </div>
+    <div style="background:#F8F9FC;border-radius:8px;padding:14px 16px;border-left:3px solid #c9a84c;">
+      <div style="font-size:8px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Facturar a</div>
+      <div style="font-size:12px;font-weight:800;color:#1a1a2e;">${cl?.nom||'—'}</div>
+      <div style="font-size:9.5px;color:#777;margin-top:4px;line-height:1.7;">${[cl?.adr,cl?.nif?'NIF: '+cl.nif:'',cl?.tel?'Tel: '+cl.tel:'',cl?.em].filter(Boolean).join('<br>')}</div>
+    </div>
   </div>
-  <table class="doc-table"><thead><tr><th style="width:46%">Descripción</th><th class="r">Base imponible</th><th class="r">IVA</th><th class="r">IVA €</th><th class="r">Total</th></tr></thead>
-  <tbody><tr><td><span class="doc-item-name">${f.con||'Servicios de rehabilitación'}</span></td><td class="r">${fe(f.bas||0)}</td><td class="r">${f.iva||10}%</td><td class="r">${fe(f.ivaA||0)}</td><td class="r" style="font-weight:700">${fe(f.tot||0)}</td></tr></tbody>
-  <tfoot><tr class="sub-row"><td colspan="4" style="text-align:right">BASE IMPONIBLE</td><td class="r">${fe(f.bas||0)}</td></tr><tr class="iva-row"><td colspan="4" style="text-align:right">IVA ${f.iva||10}%</td><td class="r">${fe(f.ivaA||0)}</td></tr><tr class="total-row"><td colspan="4" style="text-align:right">TOTAL FACTURA</td><td class="r">${fe(f.tot||0)}</td></tr></tfoot></table>
-  <div class="doc-bank"><div class="doc-bank-lbl">Pago mediante transferencia bancaria</div><div class="doc-bank-iban">ES89 0182 1527 5202 0474 3331</div><div class="doc-bank-note">Banc Sabadell · Indicar el número de factura ${f.num} en el concepto</div></div>
-  <div class="doc-sign"><div class="doc-sign-box"><div class="doc-sign-line">Firma empresa</div></div><div class="doc-sign-box"><div class="doc-sign-line">Recibí conforme — Fecha: ___________</div></div></div>
-  <div class="doc-footer"><span>Rehabilitacions Toark S.L. · NIF B56555477</span><span>Generado el ${new Date().toLocaleDateString('es-ES')}</span></div>
-  </div>`;
+
+  <!-- ALERTA VENCIMIENTO -->
+  <div style="padding:0 44px;">${alertaVenc}${vencidaAlerta}</div>
+
+  <!-- TABLA SERVICIOS -->
+  <div style="padding:0 44px 24px;">
+    <table style="width:100%;border-collapse:collapse;font-size:11.5px;">
+      <thead>
+        <tr style="background:#1a1a2e;">
+          <th style="padding:11px 14px;text-align:left;color:#fff;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Descripción del servicio</th>
+          <th style="padding:11px 14px;text-align:right;color:#fff;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Base imponible</th>
+          <th style="padding:11px 14px;text-align:right;color:#fff;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">IVA</th>
+          <th style="padding:11px 14px;text-align:right;color:#fff;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Cuota IVA</th>
+          <th style="padding:11px 14px;text-align:right;color:#c9a84c;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff;">
+          <td style="padding:14px;border-bottom:1px solid #eef0f4;">
+            <div style="font-weight:700;color:#1a1a2e;font-size:12px;">${f.con||'Servicios de rehabilitación'}</div>
+            ${f.pre&&f.pre!==''?`<div style="font-size:9.5px;color:#aaa;margin-top:3px;">Ref. ${S.pres.find(p=>p.id===f.pre)?.num||''} · ${S.pres.find(p=>p.id===f.pre)?.ref||''}</div>`:''}
+          </td>
+          <td style="padding:14px;text-align:right;border-bottom:1px solid #eef0f4;font-weight:600;">${fe(f.bas||0)}</td>
+          <td style="padding:14px;text-align:right;border-bottom:1px solid #eef0f4;color:#888;">${f.iva||10}%</td>
+          <td style="padding:14px;text-align:right;border-bottom:1px solid #eef0f4;color:#888;">${fe(f.ivaA||0)}</td>
+          <td style="padding:14px;text-align:right;border-bottom:1px solid #eef0f4;font-weight:800;color:#1a1a2e;font-size:13px;">${fe(f.tot||0)}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr><td colspan="4" style="text-align:right;padding:8px 14px;font-size:11px;color:#888;">Base imponible</td><td style="text-align:right;padding:8px 14px;font-weight:600;">${fe(f.bas||0)}</td></tr>
+        <tr><td colspan="4" style="text-align:right;padding:4px 14px;font-size:11px;color:#aaa;">IVA ${f.iva||10}%</td><td style="text-align:right;padding:4px 14px;color:#888;">${fe(f.ivaA||0)}</td></tr>
+        <tr style="background:#1a1a2e;">
+          <td colspan="4" style="text-align:right;padding:13px 14px;color:#fff;font-weight:800;font-size:13px;letter-spacing:.3px;">TOTAL A PAGAR</td>
+          <td style="text-align:right;padding:13px 14px;color:#c9a84c;font-weight:900;font-size:16px;">${fe(f.tot||0)}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- DATOS DE PAGO -->
+  <div style="padding:0 44px 24px;">
+    <div style="background:#F8F9FC;border:1px solid #eef0f4;border-radius:10px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div style="font-size:8px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Datos bancarios — Transferencia</div>
+        <div style="font-size:14px;font-weight:800;color:#1a1a2e;letter-spacing:2px;font-family:monospace;">ES89 0182 1527 5202 0474 3331</div>
+        <div style="font-size:9.5px;color:#888;margin-top:4px;">Banc Sabadell · Concepto: <b>${f.num}</b></div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:10px;color:#888;margin-bottom:4px;">Importe a ingresar</div>
+        <div style="font-size:22px;font-weight:900;color:#1a1a2e;">${fe(f.tot||0)}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIRMA -->
+  <div style="padding:0 44px 28px;display:flex;gap:40px;">
+    <div style="flex:1;text-align:center;"><div style="border-top:1px solid #ddd;padding-top:7px;font-size:9.5px;color:#aaa;margin-top:44px;">Firma empresa</div></div>
+    <div style="flex:1;text-align:center;"><div style="border-top:1px solid #ddd;padding-top:7px;font-size:9.5px;color:#aaa;margin-top:44px;">Recibí conforme — Fecha: ___________</div></div>
+  </div>
+
+  <!-- PIE -->
+  <div style="background:#F8F9FC;padding:10px 44px;display:flex;justify-content:space-between;font-size:9px;color:#bbb;border-top:1px solid #eef0f4;">
+    <span>Rehabilitacions Toark S.L. · NIF B56555477 · Inscrita en el Reg. Mercantil de Barcelona</span>
+    <span>Generado el ${new Date().toLocaleDateString('es-ES')}</span>
+  </div>
+
+</div>`;
 }
 
 function pprev(){const ig=+e('p-iva').value||10;let sub=0,ivaA=0;prows.forEach(r=>{const b=(+r.q||0)*(+r.pr||0);sub+=b;ivaA+=b*(+r.iva||ig)/100;});const p={num:epid?S.pres.find(x=>x.id===epid)?.num:'BORRADOR',cli:e('p-cli').value,ref:e('p-ref').value,desc:e('p-desc').value,dat:e('p-dat').value,val:+e('p-val').value,iva:ig,cond:e('p-cond').value,adr:e('p-adr').value,rows:JSON.parse(JSON.stringify(prows)),sub,ivaA,tot:sub+ivaA,est:e('p-est').value};showPrev(buildPresHtml(p,null),'Presupuesto — '+p.num,()=>om('mpres'));}
@@ -784,17 +927,175 @@ function buildCorpHtml(p,co){
 </script>
 <script>
 // FACTURAS
-function rFact(){const tot=S.fact.reduce((s,f)=>s+(+f.tot||0),0),cob=S.fact.filter(f=>f.est==='pagada').reduce((s,f)=>s+(+f.tot||0),0);h('pc',`<div class="sh"><div><div class="st">Facturas</div><div class="ss">Total: ${fe(tot)} · Cobrado: ${fe(cob)}</div></div><button class="btn btn-p" onclick="nf2()">+ Nueva factura</button></div><div class="card"><div class="card-b" style="padding:0;overflow-x:auto"><table class="tbl"><thead><tr><th>Nº</th><th>Fecha</th><th>Cliente</th><th>Concepto</th><th class="num">Total</th><th>Estado</th><th></th></tr></thead><tbody>${[...S.fact].reverse().map(f=>`<tr><td><b>${f.num}</b></td><td style="white-space:nowrap">${fd(f.dat)}</td><td style="font-size:11px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${cn(f.cli)}</td><td style="font-size:11px">${f.con||'—'}</td><td class="num" style="font-weight:700">${fe(+f.tot||0)}</td><td><select class="ss-sel ss-${f.est}" onchange="cfs('${f.id}',this.value)"><option value="emitida" ${f.est==='emitida'?'selected':''}>Emitida</option><option value="pagada" ${f.est==='pagada'?'selected':''}>Pagada</option><option value="vencida" ${f.est==='vencida'?'selected':''}>Vencida</option></select></td><td style="white-space:nowrap"><button class="btn btn-o btn-sm" onclick="pfact('${f.id}')">👁</button> <button class="btn btn-red btn-sm" onclick="df('${f.id}')">✕</button></td></tr>`).join('')||'<tr><td colspan="7" style="text-align:center;color:var(--g400);padding:28px">Sin facturas</td></tr>'}</tbody></table></div></div>`)}
-function nf2(){e('f-cli').innerHTML=S.cli.map(c=>`<option value="${c.id}">${c.nom}</option>`).join('');e('f-pre').innerHTML='<option value="">Ninguno</option>'+S.pres.filter(p=>p.est==='aceptado').map(p=>`<option value="${p.id}">${p.num} (${fe(p.tot||0)})</option>`).join('');e('f-dat').value=new Date().toISOString().slice(0,10);['f-bas','f-con'].forEach(i=>e(i).value='');e('f-iva').value=10;e('f-ivaa').value='';e('f-tot').value='';e('f-est').value='emitida';const v=new Date();v.setDate(v.getDate()+30);e('f-ven').value=v.toISOString().slice(0,10);om('mfact');}
+function rFact(){
+  const hoy=new Date().toISOString().slice(0,10);
+  const tot=S.fact.reduce((s,f)=>s+(+f.tot||0),0);
+  const cob=S.fact.filter(f=>f.est==='pagada').reduce((s,f)=>s+(+f.tot||0),0);
+  const pen=S.fact.filter(f=>f.est==='emitida').reduce((s,f)=>s+(+f.tot||0),0);
+  const ven=S.fact.filter(f=>f.est==='vencida').reduce((s,f)=>s+(+f.tot||0),0);
+  const pctCob=tot>0?Math.round(cob/tot*100):0;
+  const proxVenc=S.fact.filter(f=>{if(f.est!=='emitida'||!f.ven||f.ven<hoy)return false;const d=Math.round((new Date(f.ven+'T12:00')-new Date())/(1000*60*60*24));return d<=7&&d>=0;});
+  const mesAct=hoy.slice(0,7);
+  const factMes=S.fact.filter(f=>f.dat&&f.dat.slice(0,7)===mesAct).reduce((s,f)=>s+(+f.tot||0),0);
+
+  let alertas='';
+  if(proxVenc.length){
+    const items=proxVenc.map(f=>f.num+' · '+cn(f.cli)+' · '+fd(f.ven)+' · '+fe(f.tot||0)).join(' | ');
+    alertas='<div style="background:#FEF9E7;border:1px solid #F39C12;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="font-size:18px">⚠️</span><div><div style="font-weight:700;font-size:12.5px;color:#9A7D0A;">'+proxVenc.length+' factura'+( proxVenc.length>1?'s':'')+' próxima'+(proxVenc.length>1?'s':'')+' a vencer</div><div style="font-size:11px;color:#B7950B;margin-top:2px;">'+items+'</div></div></div>';
+  }
+  let vencAlerta='';
+  if(ven>0){
+    const items=S.fact.filter(f=>f.est==='vencida').map(f=>f.num+' · '+cn(f.cli)).join(', ');
+    vencAlerta='<div style="background:#FDEDEC;border:1px solid #E74C3C;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="font-size:18px">🔴</span><div><div style="font-weight:700;font-size:12.5px;color:#C0392B;">Facturas vencidas sin cobrar: '+fe(ven)+'</div><div style="font-size:11px;color:#E74C3C;margin-top:2px;">'+items+'</div></div></div>';
+  }
+
+  const barColor=pctCob>75?'var(--green)':pctCob>40?'var(--amber)':'var(--red)';
+  const nEm=S.fact.filter(f=>f.est==='emitida').length;
+  const nVen=S.fact.filter(f=>f.est==='vencida').length;
+
+  let rows='';
+  [...S.fact].reverse().forEach(f=>{
+    const dv=f.ven?Math.round((new Date(f.ven+'T12:00')-new Date())/(1000*60*60*24)):null;
+    const venAlert=(f.est==='emitida'&&dv!==null&&dv<=7&&dv>=0)?'🔶 ':'';
+    const venClass=(f.est==='vencida')?'color:var(--red);font-weight:700':'';
+    const venStr=f.ven?fd(f.ven):'—';
+    rows+='<tr>'
+      +'<td><b>'+f.num+'</b></td>'
+      +'<td style="white-space:nowrap">'+fd(f.dat)+'</td>'
+      +'<td style="font-size:11px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+cn(f.cli)+'</td>'
+      +'<td style="font-size:11px">'+(f.con||'—')+'</td>'
+      +'<td style="font-size:11px;white-space:nowrap;'+venClass+'">'+venAlert+venStr+'</td>'
+      +'<td class="num" style="font-weight:700">'+fe(+f.tot||0)+'</td>'
+      +'<td><select class="ss-sel ss-'+f.est+'" onchange="cfs(''+f.id+'',this.value)">'
+      +'<option value="emitida"'+(f.est==='emitida'?' selected':'')+'>Emitida</option>'
+      +'<option value="pagada"'+(f.est==='pagada'?' selected':'')+'>Pagada</option>'
+      +'<option value="vencida"'+(f.est==='vencida'?' selected':'')+'>Vencida</option>'
+      +'</select></td>'
+      +'<td style="white-space:nowrap">'
+      +'<button class="btn btn-o btn-sm" onclick="pfact(''+f.id+'')">👁</button> '
+      +'<button class="btn btn-red btn-sm" onclick="df(''+f.id+'')">✕</button>'
+      +'</td></tr>';
+  });
+  if(!rows)rows='<tr><td colspan="8" style="text-align:center;color:var(--g400);padding:28px">Sin facturas registradas</td></tr>';
+
+  h('pc',
+    '<div class="sh"><div><div class="st">Facturas</div><div class="ss">Gestión de facturación y cobros</div></div><button class="btn btn-p" onclick="nf2()">+ Nueva factura</button></div>'
+    +alertas+vencAlerta
+    +'<div class="kgrid k4" style="margin-bottom:18px;">'
+    +'<div class="kpi"><div class="kpi-l">Facturado total</div><div class="kpi-v">'+fe(tot)+'</div><div class="kpi-s">Este mes: '+fe(factMes)+'</div></div>'
+    +'<div class="kpi"><div class="kpi-l">Cobrado</div><div class="kpi-v" style="color:var(--green)">'+fe(cob)+'</div><div class="kpi-s">'+pctCob+'% del total</div></div>'
+    +'<div class="kpi"><div class="kpi-l">Pendiente cobro</div><div class="kpi-v" style="color:var(--amber)">'+fe(pen)+'</div><div class="kpi-s">'+nEm+' factura'+(nEm!==1?'s':'')+'</div></div>'
+    +'<div class="kpi"><div class="kpi-l">Vencido sin cobrar</div><div class="kpi-v" style="color:var(--red)">'+fe(ven)+'</div><div class="kpi-s">'+nVen+' factura'+(nVen!==1?'s':'')+'</div></div>'
+    +'</div>'
+    +'<div style="background:#fff;border:1px solid var(--g200);border-radius:10px;padding:10px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;">'
+    +'<div style="flex:1;font-size:11px;color:var(--g600);font-weight:600;">Ratio de cobro</div>'
+    +'<div style="flex:3;background:var(--g200);border-radius:99px;height:8px;overflow:hidden;"><div style="height:100%;width:'+pctCob+'%;background:'+barColor+';border-radius:99px;"></div></div>'
+    +'<div style="font-size:13px;font-weight:800;color:'+barColor+';">'+pctCob+'%</div>'
+    +'</div>'
+    +'<div class="card"><div class="card-b" style="padding:0;overflow-x:auto"><table class="tbl">'
+    +'<thead><tr><th>Nº</th><th>Fecha</th><th>Cliente</th><th>Concepto</th><th>Vence</th><th class="num">Total</th><th>Estado</th><th></th></tr></thead>'
+    +'<tbody>'+rows+'</tbody>'
+    +'</table></div></div>'
+  );
+}
+function nf2(){
+  e('mftit').textContent='Nueva Factura';
+  e('f-cli').innerHTML=S.cli.map(c=>`<option value="${c.id}">${c.nom}</option>`).join('');
+  e('f-pre').innerHTML='<option value="">Ninguno</option>'+S.pres.filter(p=>p.est==='aceptado').map(p=>`<option value="${p.id}">${p.num} — ${cn(p.cli)} (${fe(p.tot||0)})</option>`).join('');
+  e('f-dat').value=new Date().toISOString().slice(0,10);
+  ['f-bas','f-con','f-obs'].forEach(i=>{if(e(i))e(i).value='';});
+  e('f-iva').value=10;e('f-ivaa').value='';e('f-tot').value='';
+  e('f-est').value='emitida';
+  if(e('f-fpago'))e('f-fpago').value='transferencia';
+  fAutoVenc();
+  om('mfact');
+}
+function fAutoVenc(){
+  const d=e('f-dat')?.value;
+  if(!d)return;
+  const v=new Date(d+'T12:00');v.setDate(v.getDate()+30);
+  if(e('f-ven')&&!e('f-ven').value)e('f-ven').value=v.toISOString().slice(0,10);
+}
+function fLoadPre(){
+  const pid=e('f-pre')?.value;
+  if(!pid)return;
+  const p=S.pres.find(x=>x.id===pid);
+  if(!p)return;
+  if(e('f-cli'))e('f-cli').value=p.cli;
+  if(e('f-con'))e('f-con').value=p.ref||p.desc||'';
+  if(e('f-bas')){e('f-bas').value=p.sub?.toFixed(2)||'';cf();}
+}
 function cf(){const b=+e('f-bas').value||0,iva=+e('f-iva').value||10,ia=b*iva/100;e('f-ivaa').value=ia.toFixed(2);e('f-tot').value=(b+ia).toFixed(2);}
-function sf(){const b=+e('f-bas').value||0,iva=+e('f-iva').value||10,ia=b*iva/100;const f={id:uid(),num:'FACT-'+String(S.nf++).padStart(4,'0'),cli:e('f-cli').value,pre:e('f-pre').value,dat:e('f-dat').value,con:e('f-con').value,bas:b,iva,ivaA:ia,tot:b+ia,est:e('f-est').value,ven:e('f-ven').value};S.fact.push(f);ds();cm('mfact');rFact();}
+function sf(){
+  const b=+e('f-bas').value||0,iva=+e('f-iva').value||10,ia=b*iva/100;
+  if(!b){alert('Introduce la base imponible');return;}
+  const f={id:uid(),num:'FACT-'+String(S.nf++).padStart(4,'0'),cli:e('f-cli').value,pre:e('f-pre').value,dat:e('f-dat').value,con:e('f-con').value,bas:b,iva,ivaA:ia,tot:b+ia,est:e('f-est').value,ven:e('f-ven').value,fpago:e('f-fpago')?.value||'transferencia',obs:e('f-obs')?.value||''};
+  S.fact.push(f);ds();cm('mfact');rFact();
+  // Toast confirmación
+  const t=document.createElement('div');t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:#fff;padding:12px 22px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.3)';t.textContent='✓ Factura '+f.num+' guardada';document.body.appendChild(t);setTimeout(()=>t.remove(),3000);
+}
 function cfs(id,v){const f=S.fact.find(f=>f.id===id);if(f){f.est=v;ds();rFact();}}
 function df(id){if(confirm('¿Eliminar?')){S.fact=S.fact.filter(f=>f.id!==id);ds();rFact();}}
 
 // GASTOS
-function rGastos(){const tot=S.gastos.reduce((s,g)=>s+(+g.imp||0),0),base=S.fact.filter(f=>f.est==='pagada').reduce((s,f)=>s+(+f.bas||0),0),ebitda=base-tot;const cats=[...new Set(S.gastos.map(g=>g.cat))],res=cats.map(cat=>({cat,total:S.gastos.filter(g=>g.cat===cat).reduce((s,g)=>s+(+g.imp||0),0)})).sort((a,b)=>b.total-a.total);h('pc',`<div class="sh"><div><div class="st">Gastos</div><div class="ss">Total: ${fe(tot)}</div></div><button class="btn btn-p" onclick="ngasto()">+ Nuevo gasto</button></div><div class="g2"><div class="card"><div class="card-h"><span class="card-t">Por categoría</span></div><div class="card-b">${res.length?res.map(r=>{const pct=tot>0?Math.round(r.total/tot*100):0;return`<div class="pbar-wrap"><div class="pbar-lbl"><span style="font-weight:600">${r.cat}</span><span style="color:var(--g500)">${fe(r.total)} · ${pct}%</span></div><div class="pbar"><div class="pbar-fill" style="width:${pct}%;background:var(--red)"></div></div></div>`;}).join(''):'<div style="text-align:center;padding:20px;color:var(--g400)">Sin gastos</div>'}</div></div><div class="card"><div class="card-h"><span class="card-t">Resumen financiero</span></div><div class="card-b"><div class="metric-row"><span class="metric-lbl">Ingresos cobrados (base)</span><span class="metric-val" style="color:var(--green)">${fe(base)}</span></div><div class="metric-row"><span class="metric-lbl">Total gastos</span><span class="metric-val" style="color:var(--red)">− ${fe(tot)}</span></div><div class="metric-row" style="border-top:2px solid var(--g200);padding-top:10px"><span class="metric-lbl" style="font-weight:800">EBITDA</span><span class="metric-val" style="font-size:20px;color:${ebitda>=0?'var(--green)':'var(--red)'}">${fe(ebitda)}</span></div></div></div></div><div class="card"><div class="card-b" style="padding:0;overflow-x:auto"><table class="tbl"><thead><tr><th>Fecha</th><th>Categoría</th><th>Concepto</th><th class="num">Importe</th><th></th></tr></thead><tbody>${[...S.gastos].reverse().map(g=>`<tr><td style="white-space:nowrap">${fd(g.dat)}</td><td><span class="badge b-blue">${g.cat}</span></td><td>${g.con||'—'}</td><td class="num" style="font-weight:700;color:var(--red)">${fe(+g.imp||0)}</td><td><button class="btn btn-red btn-sm" onclick="dgasto('${g.id}')">✕</button></td></tr>`).join('')||'<tr><td colspan="5" style="text-align:center;color:var(--g400);padding:28px">Sin gastos</td></tr>'}</tbody></table></div></div>`)}
-function ngasto(){e('g-dat').value=new Date().toISOString().slice(0,10);e('g-con').value='';e('g-imp').value='';om('mgasto');}
-function sgasto(){const g={id:uid(),dat:e('g-dat').value,cat:e('g-cat').value,con:e('g-con').value,imp:+e('g-imp').value||0};if(!g.imp){alert('Introduce el importe');return;}S.gastos.push(g);ds();cm('mgasto');rGastos();}
+function rGastos(){
+  const hoy=new Date(),mesAct=hoy.toISOString().slice(0,7);
+  const tot=S.gastos.reduce((s,g)=>s+(+g.imp||0),0);
+  const totMes=S.gastos.filter(g=>g.dat&&g.dat.slice(0,7)===mesAct).reduce((s,g)=>s+(+g.imp||0),0);
+  const base=S.fact.filter(f=>f.est==='pagada').reduce((s,f)=>s+(+f.bas||0),0);
+  const ingresosMes=S.fact.filter(f=>f.est==='pagada'&&f.dat&&f.dat.slice(0,7)===mesAct).reduce((s,f)=>s+(+f.bas||0),0);
+  const ebitda=base-tot;
+  const margen=base>0?Math.round(ebitda/base*100):0;
+  const cats=[...new Set(S.gastos.map(g=>g.cat))];
+  const res=cats.map(cat=>({cat,total:S.gastos.filter(g=>g.cat===cat).reduce((s,g)=>s+(+g.imp||0),0)})).sort((a,b)=>b.total-a.total);
+  const meses=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const hm=hoy.getMonth(),hy=hoy.getFullYear();
+  const bars6=Array.from({length:6},function(_,i){const d=new Date(hy,hm-5+i,1),m=d.getMonth(),y=d.getFullYear(),ms=y+'-'+String(m+1).padStart(2,'0');const g=S.gastos.filter(x=>x.dat&&x.dat.slice(0,7)===ms).reduce((s,x)=>s+(+x.imp||0),0);const ing=S.fact.filter(f=>f.est==='pagada'&&f.dat&&f.dat.slice(0,7)===ms).reduce((s,f)=>s+(+f.bas||0),0);return{lbl:meses[m],g,ing};});
+  const maxB=Math.max.apply(null,bars6.map(b=>Math.max(b.g,b.ing)).concat([1]));
+  const ratioOk=tot>0&&base/tot>1.2;
+
+  let barsHtml='';
+  bars6.forEach(function(b){const pi=Math.round(b.ing/maxB*100),pg=Math.round(b.g/maxB*100);barsHtml+='<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;display:flex;gap:2px;align-items:flex-end;height:80px"><div style="flex:1;height:'+Math.max(pi,2)+'px;background:var(--green);border-radius:2px 2px 0 0;opacity:.8"></div><div style="flex:1;height:'+Math.max(pg,2)+'px;background:var(--red);border-radius:2px 2px 0 0;opacity:.8"></div></div><div style="font-size:9px;color:var(--g600);font-weight:600">'+b.lbl+'</div></div>';});
+
+  let catHtml='';
+  if(res.length){res.forEach(function(r){const pct=tot>0?Math.round(r.total/tot*100):0;catHtml+='<div class="pbar-wrap"><div class="pbar-lbl"><span style="font-weight:600">'+r.cat+'</span><span style="color:var(--g500)">'+fe(r.total)+' · '+pct+'%</span></div><div class="pbar"><div class="pbar-fill" style="width:'+pct+'%;background:var(--red)"></div></div></div>';});}
+  else catHtml='<div style="text-align:center;padding:20px;color:var(--g400)">Sin gastos</div>';
+
+  let gasRows='';
+  [...S.gastos].reverse().forEach(function(g){gasRows+='<tr><td style="white-space:nowrap">'+fd(g.dat)+'</td><td><span class="badge b-blue">'+g.cat+'</span></td><td>'+(g.con||'—')+'</td><td class="num" style="font-weight:700;color:var(--red)">'+fe(+g.imp||0)+'</td><td><button class="btn btn-red btn-sm" onclick="dgasto(''+g.id+'')">✕</button></td></tr>';});
+  if(!gasRows)gasRows='<tr><td colspan="5" style="text-align:center;color:var(--g400);padding:28px">Sin gastos</td></tr>';
+
+  h('pc',
+    '<div class="sh"><div><div class="st">Gastos & Finanzas</div><div class="ss">Control de costes y rentabilidad</div></div><button class="btn btn-p" onclick="ngasto()">+ Nuevo gasto</button></div>'
+    +'<div class="kgrid k4" style="margin-bottom:18px;">'
+    +'<div class="kpi"><div class="kpi-l">Gastos totales</div><div class="kpi-v" style="color:var(--red)">'+fe(tot)+'</div><div class="kpi-s">Este mes: '+fe(totMes)+'</div></div>'
+    +'<div class="kpi"><div class="kpi-l">Ingresos cobrados</div><div class="kpi-v" style="color:var(--green)">'+fe(base)+'</div><div class="kpi-s">Este mes: '+fe(ingresosMes)+'</div></div>'
+    +'<div class="kpi"><div class="kpi-l">EBITDA</div><div class="kpi-v" style="color:'+(ebitda>=0?'var(--green)':'var(--red)')+'">'+fe(ebitda)+'</div><div class="kpi-s">Margen: '+margen+'%</div></div>'
+    +'<div class="kpi"><div class="kpi-l">Ratio ingresos/gastos</div><div class="kpi-v" style="color:'+(ratioOk?'var(--green)':'var(--amber)')+'">'+( tot>0?(base/tot).toFixed(2)+'x':'—')+'</div><div class="kpi-s">'+(ratioOk?'✅ Rentable':'⚠️ Revisar')+'</div></div>'
+    +'</div>'
+    +'<div class="g2" style="margin-bottom:18px;">'
+    +'<div class="card"><div class="card-h"><span class="card-t">Ingresos vs Gastos — últimos 6 meses</span></div><div class="card-b">'
+    +'<div style="display:flex;align-items:flex-end;gap:4px;height:100px">'+barsHtml+'</div>'
+    +'<div style="display:flex;gap:14px;margin-top:8px;font-size:10px;"><span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:var(--green);border-radius:2px;display:inline-block;opacity:.8"></span>Ingresos</span><span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:var(--red);border-radius:2px;display:inline-block;opacity:.8"></span>Gastos</span></div>'
+    +'</div></div>'
+    +'<div class="card"><div class="card-h"><span class="card-t">Por categoría</span></div><div class="card-b">'+catHtml+'</div></div>'
+    +'</div>'
+    +'<div class="card"><div class="card-b" style="padding:0;overflow-x:auto"><table class="tbl"><thead><tr><th>Fecha</th><th>Categoría</th><th>Concepto</th><th class="num">Importe</th><th></th></tr></thead><tbody>'+gasRows+'</tbody></table></div></div>'
+  );
+}
+function ngasto(){
+  e('g-dat').value=new Date().toISOString().slice(0,10);
+  ['g-con','g-imp','g-prov'].forEach(i=>{if(e(i))e(i).value='';});
+  if(e('g-pre'))e('g-pre').innerHTML='<option value="">Sin vincular</option>'+S.pres.map(p=>`<option value="${p.id}">${p.num} — ${cn(p.cli)}</option>`).join('');
+  om('mgasto');
+}
+function sgasto(){
+  const g={id:uid(),dat:e('g-dat').value,cat:e('g-cat').value,con:e('g-con').value,imp:+e('g-imp').value||0,prov:e('g-prov')?.value||'',pre:e('g-pre')?.value||'',just:e('g-just')?.value||'factura'};
+  if(!g.imp){alert('Introduce el importe');return;}
+  if(!g.dat){alert('Introduce la fecha');return;}
+  S.gastos.push(g);ds();cm('mgasto');rGastos();
+  const t=document.createElement('div');t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:#fff;padding:12px 22px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;';t.textContent='✓ Gasto registrado: '+fe(g.imp);document.body.appendChild(t);setTimeout(()=>t.remove(),2500);
+}
 function dgasto(id){if(confirm('¿Eliminar?')){S.gastos=S.gastos.filter(g=>g.id!==id);ds();rGastos();}}
 
 // CALENDARIO - VOZ AUTOMÁTICA
