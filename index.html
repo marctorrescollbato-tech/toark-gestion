@@ -438,7 +438,7 @@ function initDefaults(){
 }
 
 async function ds(){try{await db.collection('toark').doc('data').set(JSON.parse(JSON.stringify(S)));}catch(e){console.error(e);}}
-function startSync(){if(_unsub)_unsub();_unsub=db.collection('toark').doc('data').onSnapshot(snap=>{if(snap.exists){S={...S,...snap.data()};const pg=document.querySelector('.ni.active')?.getAttribute('onclick')?.match(/go\('(\w+)'\)/)?.[1];if(pg)({dash:rDash,pres:rPres,partidas:rPart,clientes:rCli,comp:rComp,fact:rFact,gastos:rGastos,cal:rCal,docs:rDocs,obras:rObras,blog:rBlog,usuarios:rUsuarios})[pg]?.();}});}
+function startSync(){if(_unsub)_unsub();_unsub=db.collection('toark').doc('data').onSnapshot(snap=>{if(snap.exists){S={...S,...snap.data()};const pg=document.querySelector('.ni.active')?.getAttribute('onclick')?.match(/go\('(\w+)'\)/)?.[1];if(pg)go(pg);}});}
 
 function login(){const em=e('lu').value.trim(),pw=e('lp').value;e('lerr').style.display='none';e('lbt').textContent='Entrando...';const full=em.includes('@')?em:(em==='marc'?'marctorrescollbato@gmail.com':em+'@toark.es');if(!auth){e('lerr').style.display='block';e('lbt').textContent='Entrar →';return;}auth.signInWithEmailAndPassword(full,pw).catch(()=>{e('lerr').style.display='block';e('lbt').textContent='Entrar →';});}
 function logout(){if(_unsub){_unsub();_unsub=null;}auth.signOut().then(()=>{e('login-screen').style.display='flex';e('app').style.display='none';});}
@@ -448,7 +448,7 @@ if(auth)auth.onAuthStateChanged(user=>{if(user){cu={n:'Marc',r:'admin'};e('login
 function openSB(){e('sidebar').classList.add('mob-open');e('overlay').classList.add('mob-open');}
 function closeSB(){e('sidebar').classList.remove('mob-open');e('overlay').classList.remove('mob-open');}
 const pi={dash:['Resumen','Vista general'],pres:['Presupuestos','Gestión de ofertas'],partidas:['Partidas','Biblioteca'],clientes:['Clientes','Directorio'],comp:['Competencia','Análisis comparativo'],fact:['Facturas','Facturación y cobros'],gastos:['Gastos','Control de costes'],cal:['Calendario','Visitas y planificación'],docs:['Documentos','Archivo'],obras:['Obras','Estado y actuaciones'],blog:['Blog / Comunicaciones','Partes y administradoras'],usuarios:['Usuarios','Gestión de accesos']};
-function go(pg){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));const ni=[...document.querySelectorAll('.ni')].find(n=>n.getAttribute('onclick')===`go('${pg}')`);if(ni)ni.classList.add('active');const[t,s]=pi[pg]||['',''];e('ptitle').textContent=t;e('psub').textContent=s;closeSB();({dash:rDash,pres:rPres,partidas:rPart,clientes:rCli,comp:rComp,fact:rFact,gastos:rGastos,cal:rCal,docs:rDocs,obras:rObras,blog:rBlog,usuarios:rUsuarios})[pg]?.();}
+function go(pg){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));const ni=[...document.querySelectorAll('.ni')].find(n=>n.getAttribute('onclick')===`go('${pg}')`);if(ni)ni.classList.add('active');const[t,s]=pi[pg]||['',''];e('ptitle').textContent=t;e('psub').textContent=s;closeSB();const _fns={dash:()=>rDash(),pres:()=>rPres(),partidas:()=>rPart(),clientes:()=>rCli(),comp:()=>rComp(),fact:()=>rFact(),gastos:()=>rGastos(),cal:()=>rCal(),docs:()=>rDocs(),obras:()=>rObras(),blog:()=>rBlog(),usuarios:()=>rUsuarios()};if(_fns[pg])_fns[pg]();}
 
 const e=id=>document.getElementById(id);
 const h=(id,html)=>{e(id).innerHTML=html;};
